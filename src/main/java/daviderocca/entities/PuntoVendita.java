@@ -20,13 +20,16 @@ public class PuntoVendita {
 
     private String indirizzo;
 
+    private TitoloDiViaggio titoliDiViaggio;
+
     public PuntoVendita () {};
 
-    public PuntoVendita(String id, TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo) {
+    public PuntoVendita(String id, TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo, TitoloDiViaggio titoliDiViaggio) {
         this.id = id;
         this.tipologiaVendita = tipologiaVendita;
         this.statoPuntoVendita = statoPuntoVendita;
         this.indirizzo = indirizzo;
+        this.titoliDiViaggio=titoliDiViaggio;
     }
 
     public String getId() {
@@ -57,6 +60,14 @@ public class PuntoVendita {
         this.indirizzo = indirizzo;
     }
 
+    public TitoloDiViaggio getTitoliDiViaggio() {
+        return titoliDiViaggio;
+    }
+
+    public void setTitoliDiViaggio(TitoloDiViaggio titoliDiViaggio) {
+        this.titoliDiViaggio = titoliDiViaggio;
+    }
+
     @Override
     public String toString() {
         return "PuntoVendita{" +
@@ -64,6 +75,7 @@ public class PuntoVendita {
                 ", tipologiaVendita=" + tipologiaVendita +
                 ", statoPuntoVendita=" + statoPuntoVendita +
                 ", indirizzo='" + indirizzo + '\'' +
+                ", titoliDiViaggio=" + titoliDiViaggio +
                 '}';
     }
 }

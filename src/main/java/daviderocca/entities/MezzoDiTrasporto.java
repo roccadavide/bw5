@@ -23,14 +23,17 @@ public class MezzoDiTrasporto {
 
     private Tratta tratta;
 
+    private Biglietto bigliettiObliterati;
+
     private MezzoDiTrasporto () {};
 
-    public MezzoDiTrasporto(String id, int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo, Tratta tratta) {
+    public MezzoDiTrasporto(String id, int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo, Tratta tratta, Biglietto bigliettiObliterati) {
         this.id = id;
         this.capienza = capienza;
         this.statoMezzo = statoMezzo;
         this.tipologiaMezzo = tipologiaMezzo;
         this.tratta = tratta;
+        this.bigliettiObliterati=bigliettiObliterati;
     }
 
     public String getId() {
@@ -69,6 +72,14 @@ public class MezzoDiTrasporto {
         this.tratta = tratta;
     }
 
+    public Biglietto getBigliettiObliterati() {
+        return bigliettiObliterati;
+    }
+
+    public void setBigliettiObliterati(Biglietto bigliettiObliterati) {
+        this.bigliettiObliterati = bigliettiObliterati;
+    }
+
     @Override
     public String toString() {
         return "MezzoDiTrasporto{" +
@@ -77,6 +88,7 @@ public class MezzoDiTrasporto {
                 ", statoMezzo=" + statoMezzo +
                 ", tipologiaMezzo=" + tipologiaMezzo +
                 ", tratta=" + tratta +
+                ", bigliettiObliterati=" + bigliettiObliterati +
                 '}';
     }
 }

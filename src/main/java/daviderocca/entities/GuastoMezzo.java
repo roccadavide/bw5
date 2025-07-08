@@ -6,22 +6,28 @@ import java.time.LocalDate;
 
 @Entity
 //RICORDATI DI SETTARE LA TABELLA MANY TO MANY
-public class TipoGuasto {
+public class GuastoMezzo {
     @Id
     @Column (name = "id_guasto")
     @GeneratedValue (strategy = GenerationType.UUID)
     private String id;
+
+    @Column (name = "id_mezzo")
+    private MezzoDiTrasporto idMezzo;
     @Column(name = "tipologia_guasto")
+
     private String tipologiaGuasto;
     @Column(name = "data_guasto")
     private LocalDate dataDiGuasto;
     @Column(name = "data_rientro")
     private LocalDate dataDiRitornoInServizio;
 
-    public TipoGuasto () {};
 
-    public TipoGuasto(String id, String tipologiaGuasto, LocalDate dataDiGuasto, LocalDate dataDiRitornoInServizio) {
+    public GuastoMezzo() {};
+
+    public GuastoMezzo(String id, MezzoDiTrasporto idMezzo, String tipologiaGuasto, LocalDate dataDiGuasto, LocalDate dataDiRitornoInServizio) {
         this.id = id;
+        this.idMezzo=idMezzo;
         this.tipologiaGuasto = tipologiaGuasto;
         this.dataDiGuasto = dataDiGuasto;
         this.dataDiRitornoInServizio = dataDiRitornoInServizio;
@@ -29,6 +35,10 @@ public class TipoGuasto {
 
     public String getId() {
         return id;
+    }
+
+    public MezzoDiTrasporto getIdMezzo() {
+        return idMezzo;
     }
 
     public String getTipologiaGuasto() {
@@ -57,8 +67,9 @@ public class TipoGuasto {
 
     @Override
     public String toString() {
-        return "TipoGuasto{" +
+        return "GuastoMezzo{" +
                 "id='" + id + '\'' +
+                ", idMezzo=" + idMezzo +
                 ", tipologiaGuasto='" + tipologiaGuasto + '\'' +
                 ", dataDiGuasto=" + dataDiGuasto +
                 ", dataDiRitornoInServizio=" + dataDiRitornoInServizio +
