@@ -18,6 +18,9 @@ public class Tessera {
     @Column(name = "data_emissione")
     private LocalDate dataEmissione;
 
+    @Column(name = "data_rinnovo")
+    private LocalDate dataRinnovo;
+
     @OneToMany(mappedBy = "tessera")
     private List<Abbonamento> abbonamenti = new ArrayList<>();
 
@@ -27,8 +30,9 @@ public class Tessera {
 
     public Tessera () {};
 
-    public Tessera(LocalDate dataEmissione) {
+    public Tessera(LocalDate dataEmissione, LocalDate dataRinnovo) {
         this.dataEmissione = dataEmissione;
+        this.dataRinnovo = dataRinnovo;
     }
 
     public UUID getNumeroTessera() {
@@ -59,11 +63,22 @@ public class Tessera {
         this.utenteTesserato = utenteTesserato;
     }
 
+    public LocalDate getDataRinnovo() {
+        return dataRinnovo;
+    }
+
+    public void setDataRinnovo(LocalDate dataRinnovo) {
+        this.dataRinnovo = dataRinnovo;
+    }
+
     @Override
     public String toString() {
         return "Tessera{" +
-                "numeroTessera='" + numeroTessera + '\'' +
+                "numeroTessera=" + numeroTessera +
                 ", dataEmissione=" + dataEmissione +
+                ", dataRinnovo=" + dataRinnovo +
+                ", abbonamenti=" + abbonamenti +
+                ", utenteTesserato=" + utenteTesserato +
                 '}';
     }
 }
