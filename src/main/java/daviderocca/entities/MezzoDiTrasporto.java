@@ -5,7 +5,6 @@ import daviderocca.entities.enums.TipologiaMezzo;
 import jakarta.persistence.*;
 
 @Entity
-//RICORDATI DI SETTARE LA TABELLA MANY TO MANY
 @Table (name = "mezzi_di_trasporto")
 public class MezzoDiTrasporto {
 
@@ -21,18 +20,16 @@ public class MezzoDiTrasporto {
     @Column(name = "tipologia_mezzo")
     private TipologiaMezzo tipologiaMezzo;
 
-    private Tratta tratta;
 
     private Biglietto bigliettiObliterati;
 
     private MezzoDiTrasporto () {};
 
-    public MezzoDiTrasporto(String id, int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo, Tratta tratta, Biglietto bigliettiObliterati) {
+    public MezzoDiTrasporto(String id, int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo, Biglietto bigliettiObliterati) {
         this.id = id;
         this.capienza = capienza;
         this.statoMezzo = statoMezzo;
         this.tipologiaMezzo = tipologiaMezzo;
-        this.tratta = tratta;
         this.bigliettiObliterati=bigliettiObliterati;
     }
 
@@ -64,14 +61,6 @@ public class MezzoDiTrasporto {
         this.tipologiaMezzo = tipologiaMezzo;
     }
 
-    public Tratta getTratta() {
-        return tratta;
-    }
-
-    public void setTratta(Tratta tratta) {
-        this.tratta = tratta;
-    }
-
     public Biglietto getBigliettiObliterati() {
         return bigliettiObliterati;
     }
@@ -87,7 +76,6 @@ public class MezzoDiTrasporto {
                 ", capienza=" + capienza +
                 ", statoMezzo=" + statoMezzo +
                 ", tipologiaMezzo=" + tipologiaMezzo +
-                ", tratta=" + tratta +
                 ", bigliettiObliterati=" + bigliettiObliterati +
                 '}';
     }
