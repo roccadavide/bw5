@@ -1,25 +1,26 @@
 package daviderocca.entities;
 
 import daviderocca.entities.enums.TipoAbbonamento;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table (name="abbonamenti")
-public class Abbonamento extends TitoloDiViaggio{
-@Column(name = "tipo_abbonamento")
+public class Abbonamento extends TitoloDiViaggio {
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_abbonamento")
     private TipoAbbonamento tipoAbbonamento;
-@Column(name = "numero_tessera")
+
+    @Column(name = "numero_tessera")
     private int numeroTessera;
 
     private Abbonamento () {};
 
 
-    public Abbonamento(String id, LocalDate dataEmissione, String puntoDiEmissione, TipoAbbonamento tipoAbbonamento, int numeroTessera) {
-        super(id, dataEmissione, puntoDiEmissione);
+    public Abbonamento(LocalDate dataEmissione, String puntoDiEmissione, TipoAbbonamento tipoAbbonamento, int numeroTessera) {
+        super(dataEmissione, puntoDiEmissione);
         this.tipoAbbonamento = tipoAbbonamento;
         this.numeroTessera = numeroTessera;
     }

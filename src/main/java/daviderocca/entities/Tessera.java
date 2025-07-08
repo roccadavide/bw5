@@ -6,12 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Tessera {
     @Id
     @Column(name = "numero_tessera", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(name = "data_emissione")
     private LocalDate dataEmissione;
@@ -21,13 +22,12 @@ public class Tessera {
 
     public Tessera () {};
 
-    public Tessera(String id, LocalDate dataEmissione, Utente utente) {
-        this.id = id;
+    public Tessera(LocalDate dataEmissione, Utente utente) {
         this.dataEmissione = dataEmissione;
         this.utente = utente;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

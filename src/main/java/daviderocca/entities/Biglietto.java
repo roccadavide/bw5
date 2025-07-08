@@ -1,21 +1,24 @@
 package daviderocca.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table (name = "biglietti")
 public class Biglietto extends TitoloDiViaggio {
+
     @Column(name = "data_obliterazione")
     private LocalDate dataObliterazione;
 
+    @ManyToOne
+    @JoinColumn(name = "id_mezzo")
+    private MezzoDiTrasporto mezzoDiTrasporto;
+
     public Biglietto () {};
 
-    public Biglietto(String id, LocalDate dataEmissione, String puntoDiEmissione, LocalDate dataObliterazione) {
-        super(id, dataEmissione, puntoDiEmissione);
+    public Biglietto(LocalDate dataEmissione, String puntoDiEmissione, LocalDate dataObliterazione) {
+        super(dataEmissione, puntoDiEmissione);
         this.dataObliterazione = dataObliterazione;
     }
 
@@ -25,6 +28,14 @@ public class Biglietto extends TitoloDiViaggio {
 
     public void setDataObliterazione(LocalDate dataObliterazione) {
         this.dataObliterazione = dataObliterazione;
+    }
+
+    public MezzoDiTrasporto getMezzoDiTrasporto() {
+        return mezzoDiTrasporto;
+    }
+
+    public void setMezzoDiTrasporto(MezzoDiTrasporto mezzoDiTrasporto) {
+        this.mezzoDiTrasporto = mezzoDiTrasporto;
     }
 
     @Override

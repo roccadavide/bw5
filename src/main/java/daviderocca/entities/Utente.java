@@ -6,13 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 //RICORDATI DI SETTARE Le TABELLE
 public class Utente {
     @Id
     @Column(name = "id_utente", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     private String nome;
 
@@ -23,14 +24,13 @@ public class Utente {
 
     public Utente () {}
 
-    public Utente(LocalDate dataNascita, String cognome, String nome, String id) {
+    public Utente(LocalDate dataNascita, String cognome, String nome) {
         this.dataNascita = dataNascita;
         this.cognome = cognome;
         this.nome = nome;
-        this.id = id;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

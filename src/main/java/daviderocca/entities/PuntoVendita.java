@@ -3,36 +3,41 @@ package daviderocca.entities;
 
 import daviderocca.entities.enums.StatoPuntoVendita;
 import daviderocca.entities.enums.TipologiaVendita;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 //RICORDATI DI SETTARE LA TABELLA MANY TO MANY
 public class PuntoVendita {
 
     @Id
+    @Column(name = "id_punto_vendita", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipologia_vendita")
     private TipologiaVendita tipologiaVendita;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "stato_punto_vendita")
     private StatoPuntoVendita statoPuntoVendita;
 
     private String indirizzo;
 
+    @Column(name = "titoli_di_viaggio")
     private TitoloDiViaggio titoliDiViaggio;
 
     public PuntoVendita () {};
 
-    public PuntoVendita(String id, TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo, TitoloDiViaggio titoliDiViaggio) {
-        this.id = id;
+    public PuntoVendita(TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo, TitoloDiViaggio titoliDiViaggio) {
         this.tipologiaVendita = tipologiaVendita;
         this.statoPuntoVendita = statoPuntoVendita;
         this.indirizzo = indirizzo;
         this.titoliDiViaggio=titoliDiViaggio;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

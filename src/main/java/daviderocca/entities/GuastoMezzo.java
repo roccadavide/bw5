@@ -3,42 +3,43 @@ package daviderocca.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
-//RICORDATI DI SETTARE LA TABELLA MANY TO MANY
+@Table(name = "guasti_mezzo")
 public class GuastoMezzo {
     @Id
-    @Column (name = "id_guasto")
+    @Column (name = "id_guasto", nullable = false)
     @GeneratedValue (strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
-    @Column (name = "id_mezzo")
-    private MezzoDiTrasporto idMezzo;
     @Column(name = "tipologia_guasto")
-
     private String tipologiaGuasto;
+
     @Column(name = "data_guasto")
     private LocalDate dataDiGuasto;
+
     @Column(name = "data_rientro")
     private LocalDate dataDiRitornoInServizio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_mezzo")
+    private MezzoDiTrasporto mezzoDiTrasporto;
 
 
     public GuastoMezzo() {};
 
-    public GuastoMezzo(String id, MezzoDiTrasporto idMezzo, String tipologiaGuasto, LocalDate dataDiGuasto, LocalDate dataDiRitornoInServizio) {
-        this.id = id;
-        this.idMezzo=idMezzo;
+    public GuastoMezzo(String tipologiaGuasto, LocalDate dataDiGuasto, LocalDate dataDiRitornoInServizio) {
         this.tipologiaGuasto = tipologiaGuasto;
         this.dataDiGuasto = dataDiGuasto;
         this.dataDiRitornoInServizio = dataDiRitornoInServizio;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public MezzoDiTrasporto getIdMezzo() {
-        return idMezzo;
+    public UUID getId() {
+        return id;
     }
 
     public String getTipologiaGuasto() {
@@ -65,11 +66,19 @@ public class GuastoMezzo {
         this.dataDiRitornoInServizio = dataDiRitornoInServizio;
     }
 
+    public MezzoDiTrasporto getMezzoDiTrasporto() {
+        return mezzoDiTrasporto;
+    }
+
+    public void setMezzoDiTrasporto(MezzoDiTrasporto mezzoDiTrasporto) {
+        this.mezzoDiTrasporto = mezzoDiTrasporto;
+    }
+
     @Override
     public String toString() {
         return "GuastoMezzo{" +
                 "id='" + id + '\'' +
-                ", idMezzo=" + idMezzo +
+                ", mezzoDiTrasporto=" + mezzoDiTrasporto +
                 ", tipologiaGuasto='" + tipologiaGuasto + '\'' +
                 ", dataDiGuasto=" + dataDiGuasto +
                 ", dataDiRitornoInServizio=" + dataDiRitornoInServizio +

@@ -4,6 +4,7 @@ package daviderocca.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 
@@ -12,7 +13,7 @@ public abstract class TitoloDiViaggio {
     @Id
     @Column(name = "id_titolo", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     @Column(name = "data_emissione")
     private LocalDate dataEmissione;
     @Column(name = "punto_emissione")
@@ -20,13 +21,12 @@ public abstract class TitoloDiViaggio {
 
     public TitoloDiViaggio () {};
 
-    public TitoloDiViaggio(String id, LocalDate dataEmissione, String puntoDiEmissione) {
-        this.id = id;
+    public TitoloDiViaggio(LocalDate dataEmissione, String puntoDiEmissione) {
         this.dataEmissione = dataEmissione;
         this.puntoDiEmissione = puntoDiEmissione;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

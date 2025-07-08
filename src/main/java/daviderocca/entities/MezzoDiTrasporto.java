@@ -4,6 +4,10 @@ import daviderocca.entities.enums.StatoMezzo;
 import daviderocca.entities.enums.TipologiaMezzo;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @Entity
 @Table (name = "mezzi_di_trasporto")
 public class MezzoDiTrasporto {
@@ -11,29 +15,36 @@ public class MezzoDiTrasporto {
     @Id
     @Column(name = "id_mezzo", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     private int capienza;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "stato_mezzo")
     private StatoMezzo statoMezzo;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipologia_mezzo")
     private TipologiaMezzo tipologiaMezzo;
 
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<Biglietto> bigliettiObliterati = new ArrayList<>();
 
-    private Biglietto bigliettiObliterati;
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<StoricoPercorrenze> storiciPercorrenze = new ArrayList<>();
+
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<GuastoMezzo> guastiMezzo = new ArrayList<>();
 
     private MezzoDiTrasporto () {};
 
-    public MezzoDiTrasporto(String id, int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo, Biglietto bigliettiObliterati) {
-        this.id = id;
+    public MezzoDiTrasporto(int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo) {
         this.capienza = capienza;
         this.statoMezzo = statoMezzo;
         this.tipologiaMezzo = tipologiaMezzo;
-        this.bigliettiObliterati=bigliettiObliterati;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -61,12 +72,28 @@ public class MezzoDiTrasporto {
         this.tipologiaMezzo = tipologiaMezzo;
     }
 
-    public Biglietto getBigliettiObliterati() {
+    public List<Biglietto> getBigliettiObliterati() {
         return bigliettiObliterati;
     }
 
-    public void setBigliettiObliterati(Biglietto bigliettiObliterati) {
+    public void setBigliettiObliterati(List<Biglietto> bigliettiObliterati) {
         this.bigliettiObliterati = bigliettiObliterati;
+    }
+
+    public List<StoricoPercorrenze> getStoriciPercorrenze() {
+        return storiciPercorrenze;
+    }
+
+    public void setStoriciPercorrenze(List<StoricoPercorrenze> storiciPercorrenze) {
+        this.storiciPercorrenze = storiciPercorrenze;
+    }
+
+    public List<GuastoMezzo> getGuastiMezzo() {
+        return guastiMezzo;
+    }
+
+    public void setGuastiMezzo(List<GuastoMezzo> guastiMezzo) {
+        this.guastiMezzo = guastiMezzo;
     }
 
     @Override
@@ -76,7 +103,6 @@ public class MezzoDiTrasporto {
                 ", capienza=" + capienza +
                 ", statoMezzo=" + statoMezzo +
                 ", tipologiaMezzo=" + tipologiaMezzo +
-                ", bigliettiObliterati=" + bigliettiObliterati +
                 '}';
     }
 }

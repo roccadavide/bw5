@@ -2,13 +2,17 @@ package daviderocca.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @Entity
 @Table(name = "tratte")
 public class Tratta {
     @Id
     @Column(name = "id_tratta", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(name = "punto_partenza")
     private String partenza;
@@ -19,17 +23,18 @@ public class Tratta {
     @Column(name = "tempo_percorrenza_previsto")
     private double tempoPrevistoTratta;
 
+    @OneToMany(mappedBy = "tratta")
+    private List<StoricoPercorrenze> storiciPercorrenze = new ArrayList<>();
 
     public Tratta () {};
 
-    public Tratta(String id, String partenza, String arrivo, double tempoPrevistoTratta, double tempoEffettivoTratta) {
-        this.id = id;
+    public Tratta(String partenza, String arrivo, double tempoPrevistoTratta, double tempoEffettivoTratta) {
         this.partenza = partenza;
         this.arrivo = arrivo;
         this.tempoPrevistoTratta = tempoPrevistoTratta;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
