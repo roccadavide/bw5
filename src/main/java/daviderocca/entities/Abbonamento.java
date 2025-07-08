@@ -13,16 +13,16 @@ public class Abbonamento extends TitoloDiViaggio {
     @Column(name = "tipo_abbonamento")
     private TipoAbbonamento tipoAbbonamento;
 
-    @Column(name = "numero_tessera")
-    private int numeroTessera;
+    @ManyToOne
+    @JoinColumn(name = "numero_tessera")
+    private Tessera tessera;
 
     private Abbonamento () {};
 
 
-    public Abbonamento(LocalDate dataEmissione, String puntoDiEmissione, TipoAbbonamento tipoAbbonamento, int numeroTessera) {
-        super(dataEmissione, puntoDiEmissione);
+    public Abbonamento(LocalDate dataEmissione, TipoAbbonamento tipoAbbonamento) {
+        super(dataEmissione);
         this.tipoAbbonamento = tipoAbbonamento;
-        this.numeroTessera = numeroTessera;
     }
 
     public TipoAbbonamento getTipoAbbonamento() {
@@ -33,19 +33,10 @@ public class Abbonamento extends TitoloDiViaggio {
         this.tipoAbbonamento = tipoAbbonamento;
     }
 
-    public int getNumeroTessera() {
-        return numeroTessera;
-    }
-
-    public void setNumeroTessera(int numeroTessera) {
-        this.numeroTessera = numeroTessera;
-    }
-
     @Override
     public String toString() {
         return "Abbonamento{" +
                 "tipoAbbonamento=" + tipoAbbonamento +
-                ", numeroTessera=" + numeroTessera +
                 '}';
     }
 }

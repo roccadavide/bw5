@@ -1,15 +1,14 @@
 package daviderocca.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-//RICORDATI DI SETTARE Le TABELLE
+@Entity
+@Table(name = "utente")
 public class Utente {
+
     @Id
     @Column(name = "id_utente", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,6 +20,9 @@ public class Utente {
 
     @Column(name = "data_nascita")
     private LocalDate dataNascita;
+
+    @OneToOne(mappedBy = "utenteTesserato")
+    private Tessera tessera;
 
     public Utente () {}
 
@@ -56,6 +58,14 @@ public class Utente {
 
     public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
     @Override

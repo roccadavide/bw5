@@ -15,10 +15,15 @@ public class Biglietto extends TitoloDiViaggio {
     @JoinColumn(name = "id_mezzo")
     private MezzoDiTrasporto mezzoDiTrasporto;
 
+    //è normale che sia il biglietto a gestire la relazione e contenere id_mezzo perché è ManyToOne,
+    //e in questo tipo di relazione è sempre Many che "comanda";
+    //questo non inficia la creazione di una lista di biglietti obliterati in MezzoDiTrasporto
+    //poiché viene creata in esso una lista di biglietti obliterati
+
     public Biglietto () {};
 
-    public Biglietto(LocalDate dataEmissione, String puntoDiEmissione, LocalDate dataObliterazione) {
-        super(dataEmissione, puntoDiEmissione);
+    public Biglietto(LocalDate dataEmissione, LocalDate dataObliterazione) {
+        super(dataEmissione);
         this.dataObliterazione = dataObliterazione;
     }
 

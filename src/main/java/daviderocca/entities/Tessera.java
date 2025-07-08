@@ -1,34 +1,38 @@
 package daviderocca.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "tessera")
 public class Tessera {
     @Id
     @Column(name = "numero_tessera", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID numeroTessera;
 
     @Column(name = "data_emissione")
     private LocalDate dataEmissione;
 
-    @Column(name = "id_utente")
-    private Utente utente;
+    @OneToMany(mappedBy = "tessera")
+    private List<Abbonamento> abbonamenti = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "id_utente")
+    private Utente utenteTesserato;
 
     public Tessera () {};
 
-    public Tessera(LocalDate dataEmissione, Utente utente) {
+    public Tessera(LocalDate dataEmissione) {
         this.dataEmissione = dataEmissione;
-        this.utente = utente;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getNumeroTessera() {
+        return numeroTessera;
     }
 
     public LocalDate getDataEmissione() {
@@ -39,20 +43,27 @@ public class Tessera {
         this.dataEmissione = dataEmissione;
     }
 
-    public Utente getUtente() {
-        return utente;
+    public List<Abbonamento> getAbbonamenti() {
+        return abbonamenti;
     }
 
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setAbbonamenti(List<Abbonamento> abbonamenti) {
+        this.abbonamenti = abbonamenti;
+    }
+
+    public Utente getUtenteTesserato() {
+        return utenteTesserato;
+    }
+
+    public void setUtenteTesserato(Utente utenteTesserato) {
+        this.utenteTesserato = utenteTesserato;
     }
 
     @Override
     public String toString() {
         return "Tessera{" +
-                "id='" + id + '\'' +
+                "numeroTessera='" + numeroTessera + '\'' +
                 ", dataEmissione=" + dataEmissione +
-                ", utente=" + utente +
                 '}';
     }
 }

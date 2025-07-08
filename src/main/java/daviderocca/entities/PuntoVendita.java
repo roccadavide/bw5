@@ -5,9 +5,12 @@ import daviderocca.entities.enums.StatoPuntoVendita;
 import daviderocca.entities.enums.TipologiaVendita;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-//RICORDATI DI SETTARE LA TABELLA MANY TO MANY
+@Entity
+@Table(name = "punto_vendita")
 public class PuntoVendita {
 
     @Id
@@ -25,16 +28,15 @@ public class PuntoVendita {
 
     private String indirizzo;
 
-    @Column(name = "titoli_di_viaggio")
-    private TitoloDiViaggio titoliDiViaggio;
+    @OneToMany(mappedBy = "puntoVendita")
+    private List<TitoloDiViaggio> titoliDiViaggio = new ArrayList<>();
 
     public PuntoVendita () {};
 
-    public PuntoVendita(TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo, TitoloDiViaggio titoliDiViaggio) {
+    public PuntoVendita(TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo) {
         this.tipologiaVendita = tipologiaVendita;
         this.statoPuntoVendita = statoPuntoVendita;
         this.indirizzo = indirizzo;
-        this.titoliDiViaggio=titoliDiViaggio;
     }
 
     public UUID getId() {
@@ -65,11 +67,11 @@ public class PuntoVendita {
         this.indirizzo = indirizzo;
     }
 
-    public TitoloDiViaggio getTitoliDiViaggio() {
+    public List<TitoloDiViaggio> getTitoliDiViaggio() {
         return titoliDiViaggio;
     }
 
-    public void setTitoliDiViaggio(TitoloDiViaggio titoliDiViaggio) {
+    public void setTitoliDiViaggio(List<TitoloDiViaggio> titoliDiViaggio) {
         this.titoliDiViaggio = titoliDiViaggio;
     }
 
@@ -80,7 +82,6 @@ public class PuntoVendita {
                 ", tipologiaVendita=" + tipologiaVendita +
                 ", statoPuntoVendita=" + statoPuntoVendita +
                 ", indirizzo='" + indirizzo + '\'' +
-                ", titoliDiViaggio=" + titoliDiViaggio +
                 '}';
     }
 }

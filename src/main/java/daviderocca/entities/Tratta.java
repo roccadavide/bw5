@@ -9,6 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "tratte")
 public class Tratta {
+
     @Id
     @Column(name = "id_tratta", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -28,7 +29,7 @@ public class Tratta {
 
     public Tratta () {};
 
-    public Tratta(String partenza, String arrivo, double tempoPrevistoTratta, double tempoEffettivoTratta) {
+    public Tratta(String partenza, String arrivo, double tempoPrevistoTratta) {
         this.partenza = partenza;
         this.arrivo = arrivo;
         this.tempoPrevistoTratta = tempoPrevistoTratta;
@@ -62,6 +63,13 @@ public class Tratta {
         this.tempoPrevistoTratta = tempoPrevistoTratta;
     }
 
+    public List<StoricoPercorrenze> getStoriciPercorrenze() {
+        return storiciPercorrenze;
+    }
+
+    public void setStoriciPercorrenze(List<StoricoPercorrenze> storiciPercorrenze) {
+        this.storiciPercorrenze = storiciPercorrenze;
+    }
 
     @Override
     public String toString() {
