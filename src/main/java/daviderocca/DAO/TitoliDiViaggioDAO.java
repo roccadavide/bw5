@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class TitoliDiViaggioDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public TitoliDiViaggioDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -27,7 +27,7 @@ public class TitoliDiViaggioDAO {
 
         et.commit();
 
-        System.out.println("il titolo di viaggio "+titoloDiViaggio+" è stato correttamente salvato");
+        System.out.println("il titolo di viaggio " + titoloDiViaggio + " è stato correttamente salvato");
 
     }
 
@@ -35,27 +35,31 @@ public class TitoliDiViaggioDAO {
 
         TitoloDiViaggio trovato=entityManager.find(TitoloDiViaggio.class,id);
         if(trovato==null)
-            System.out.println("il titolo di viaggio "+trovato+" non è stato trovato");
-
+            System.out.println("il titolo di viaggio " + trovato + " non è stato trovato");
 
         return trovato;
-
     }
 
-    public  void deleteById(int id){
+    public  void deleteById(int id) {
+
         TitoloDiViaggio daEliminare=this.findById(id);
+
         EntityTransaction et=entityManager.getTransaction();
+
         et.begin();
+
         entityManager.remove(daEliminare);
+
         et.commit();
 
-        System.out.println("il titolo di viaggio "+daEliminare+" è stato eliminato");
+        System.out.println("il titolo di viaggio " + daEliminare + " è stato eliminato");
 
     }
 
-    public List<TitoloDiViaggio> findEntryPointByTitleAndPeriod(LocalDate a , LocalDate b,int idPuntoVendita){
+    public List<TitoloDiViaggio> findEntryPointByTitleAndPeriod(LocalDate a , LocalDate b,int idPuntoVendita) {
         TypedQuery <TitoloDiViaggio> query= entityManager.createQuery
                 ("SELECT COUNT t from TitoloDiViaggio t WHERE data_emissione BETWEEN :a AND :b AND id_punto_vendita=:idPuntoVendita",TitoloDiViaggio.class);
+
         query.setParameter("a",a);
         query.setParameter("b",b);
         query.setParameter("idPuntoVendita",idPuntoVendita);
@@ -63,25 +67,26 @@ public class TitoliDiViaggioDAO {
         return query.getResultList();
     }
 
-    public void findTicketByTransport(UUID idMezzo){
+    public void findTicketByTransport(UUID idMezzo) {
         TypedQuery<Long> query= entityManager.createQuery
-                ("SELECT COUNT (t) from TitoloDiViaggio t WHERE t.id_mezzo=:idMezzo",Long.class);
-        query.setParameter("id_mezzo",idMezzo);
+                ("SELECT COUNT (t) from TitoloDiViaggio t WHERE t.id_mezzo = :idMezzo",Long.class);
 
-        Long count= query.getSingleResult();
+        query.setParameter("id_mezzo", idMezzo);
 
-        System.out.println("il numero di biglietti vidimati per il mezzo "+idMezzo+" è uguale a: "+count);
+        Long count = query.getSingleResult();
+
+        System.out.println("Il numero di biglietti vidimati per il mezzo " + idMezzo + " è uguale a: " + count);
     }
 
     public void findTicketByPeriod(LocalDate a , LocalDate b){
         TypedQuery <Long> query= entityManager.createQuery
-                ("SELECT COUNT (t) from TitoloDiViaggio t WHERE t.dataObliterazione BETWEEN :a AND :b",Long.class);
+                ("SELECT COUNT (t) from TitoloDiViaggio t WHERE t.dataObliterazione BETWEEN :a AND :b", Long.class);
         query.setParameter("a",a);
         query.setParameter("b",b);
 
         Long count= query.getSingleResult();
 
-        System.out.println("il numero di biglietti vidimati per il periodo "+a+"/ " +b+" è uguale a: "+count);
+        System.out.println("Il numero di biglietti vidimati per il periodo " + a + "/ " + b +" è uguale a: " + count);
 
     }
 

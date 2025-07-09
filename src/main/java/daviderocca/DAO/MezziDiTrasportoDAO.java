@@ -1,8 +1,6 @@
 package daviderocca.DAO;
 
-import daviderocca.entities.GuastoMezzo;
-import daviderocca.entities.MezzoDiTrasporto;
-import daviderocca.entities.TitoloDiViaggio;
+import daviderocca.entities.*;
 import daviderocca.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -13,22 +11,41 @@ import java.util.List;
 import java.util.UUID;
 
 public class MezziDiTrasportoDAO {
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    public MezziDiTrasportoDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     public void save(MezzoDiTrasporto mezzoDiTrasporto) {
 
         EntityTransaction et = entityManager.getTransaction();
+
         et.begin();
 
         entityManager.persist(mezzoDiTrasporto);
 
         et.commit();
 
-        System.out.println("il mezzo di trasporto "+mezzoDiTrasporto+" è stato correttamente salvato");
+        System.out.println("il mezzo di trasporto " + mezzoDiTrasporto + " è stato correttamente salvato");
 
     }
 
-    public MezzoDiTrasporto findById(UUID id){
+    public void save(Tratta tratta) {
+
+        EntityTransaction et = entityManager.getTransaction();
+
+        et.begin();
+
+        entityManager.persist(tratta);
+
+        et.commit();
+
+        System.out.println("La tratta da" + tratta.getPartenza() + " a " + tratta.getArrivo() +" è stata correttamente salvata");
+
+    }
+
+    public MezzoDiTrasporto findMezzoById(UUID id){
 
         MezzoDiTrasporto trovato=entityManager.find(MezzoDiTrasporto.class,id);
         if(trovato==null)
@@ -38,8 +55,18 @@ public class MezziDiTrasportoDAO {
 
     }
 
+    public Tratta findTrattaById(UUID id){
+
+        Tratta trovato=entityManager.find(Tratta.class,id);
+        if(trovato==null)
+            throw new NotFoundException(id);
+
+        return trovato;
+
+    }
+
     public  void deleteById(UUID id){
-        MezzoDiTrasporto daEliminare=this.findById(id);
+        MezzoDiTrasporto daEliminare=this.findMezzoById(id);
         EntityTransaction et=entityManager.getTransaction();
         et.begin();
         entityManager.remove(daEliminare);
@@ -59,5 +86,6 @@ public class MezziDiTrasportoDAO {
 
         return query.getResultList();
     }
+
 
 }
