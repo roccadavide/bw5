@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class TessereDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public TessereDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
