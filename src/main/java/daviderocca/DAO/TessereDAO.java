@@ -48,7 +48,19 @@ public class TessereDAO {
 
     public void renewalById(UUID id){
         Tessera daRinnovare= this.findById(id);
-        if (LocalDate.now().isAfter(daRinnovare.getDataEmissione().plusYears(1)))
+        if (daRinnovare.getDataRinnovo()==null){
+            if (LocalDate.now().isAfter(daRinnovare.getDataEmissione().plusYears(1))){
+                daRinnovare.setDataRinnovo(LocalDate.now());
+            }
+            else
+            System.out.println("la tessera "+daRinnovare + " è ancora valida");
+        }
+        else  if (LocalDate.now().isAfter(daRinnovare.getDataRinnovo().plusYears(1))){
             daRinnovare.setDataRinnovo(LocalDate.now());
+        }
+        else
+            System.out.println("il rinnovo della tessera "+daRinnovare + " è ancora valido");
     }
+
+
 }
