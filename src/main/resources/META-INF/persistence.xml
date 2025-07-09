@@ -15,6 +15,8 @@
         <class>daviderocca.entities.TitoloDiViaggio</class>
         <class>daviderocca.entities.Tratta</class>
         <class>daviderocca.entities.Utente</class>
+        <class>daviderocca.entities.DistributoreAutomatico</class>
+        <class>daviderocca.entities.RivenditoreAutorizzato</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/aziendatrasporti"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>

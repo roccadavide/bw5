@@ -1,7 +1,7 @@
 package daviderocca.entities;
 
-import daviderocca.entities.enums.StatoMezzo;
-import daviderocca.entities.enums.TipologiaMezzo;
+import daviderocca.enums.StatoMezzo;
+import daviderocca.enums.TipologiaMezzo;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

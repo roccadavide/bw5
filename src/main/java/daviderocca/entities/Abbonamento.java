@@ -1,6 +1,6 @@
 package daviderocca.entities;
 
-import daviderocca.entities.enums.TipoAbbonamento;
+import daviderocca.enums.TipoAbbonamento;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
