@@ -17,7 +17,7 @@ public class Abbonamento extends TitoloDiViaggio {
     @JoinColumn(name = "numero_tessera")
     private Tessera tessera;
 
-    private Abbonamento () {};
+    public Abbonamento () {};
 
 
     public Abbonamento(LocalDate dataEmissione, TipoAbbonamento tipoAbbonamento) {
