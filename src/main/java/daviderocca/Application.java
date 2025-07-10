@@ -29,6 +29,7 @@ public class Application {
         StoricoPercorrenzeDAO sp = new StoricoPercorrenzeDAO(em);
         TessereDAO ted=new TessereDAO(em);
 
+
         System.out.println("Ciao , decidi quale utente sei");
         System.out.println("1)Passeggero");
         System.out.println("2)Amministratore");
@@ -43,12 +44,19 @@ public class Application {
                     System.out.println("1) Crea un titolo di viaggio");
                     scelta=in.nextInt();
 
+                    System.out.println("Da che punto vendita vuoi acquistarlo? Inserisci matricola");
+                    String matricola= in.nextLine();
+                    if (pd.findById(UUID.fromString(matricola))!=null){
+
+                    }
+
+
                     switch (scelta){
                         case 1:
                             System.out.println("Che titolo vuoi acquistare?");
                             System.out.println("1) Biglietto singolo");
                             System.out.println("2) Abbonamento");
-                            System.out.println("2) Tessera");
+                            System.out.println("3) Tessera");
 
                             scelta=in.nextInt();
                             switch (scelta){
