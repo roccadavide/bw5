@@ -33,13 +33,13 @@ public class Application {
         UtentiDAO ud = new UtentiDAO(em);
         TessereDAO ted=new TessereDAO(em);
 
-        Tratta t1 = new Tratta("milano", "malpensa", 213.4);
-        Tratta t2 = new Tratta("milano", "linate", 155.4);
+//        Tratta t1 = new Tratta("milano", "malpensa", 213.4);
+//        Tratta t2 = new Tratta("milano", "linate", 155.4);
+//
+//        MezzoDiTrasporto mz1 = new MezzoDiTrasporto(12, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz2 = new MezzoDiTrasporto(342, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 
-        List<Tratta> listaTratte = new ArrayList<>();
-
-        listaTratte.add(t1);
-        listaTratte.add(t2);
+        List<Tratta> listaTratte = md.getAllTratte();
 
 
         System.out.println("Ciao, decidi quale utente sei");
@@ -55,7 +55,7 @@ public class Application {
                     System.out.println("Scegli un operazione dal menù, premi 0 per uscire.");
                     System.out.println("-----------------------------------------------------");
                     System.out.println("1) Crea un titolo di viaggio");
-                    System.out.println("2) Ho già un titolo di viaggio, mostrami gli orari!");
+                    System.out.println("2) Ho già un titolo di viaggio, mostrami le tratte disponibili!");
                     scelta = in.nextInt();
                     in.nextLine();
 
@@ -175,7 +175,29 @@ public class Application {
                                         //----------------------------------------------LINEA DA NON SUPERARE------------------------------------------------------------------
                                     case 2:
                                         System.out.println("Questa è la lista delle tratte disponibili:");
-                                        listaTratte.forEach(tratta -> System.out.println("\n" + tratta));
+                                        for (int i = 0; i < listaTratte.size(); i++) {
+                                            System.out.println((i + 1) + ") " + listaTratte.get(i));
+                                        }
+
+                                        System.out.println("Quale tra queste scegli?");
+                                        int scelta2 = in.nextInt();
+
+                                        if(scelta2 < 1 || scelta2 > listaTratte.size()) {
+                                            System.out.println("Scelta non valida!");
+                                        } else {
+                                            Tratta trattaScelta = listaTratte.get(scelta2 - 1);
+
+                                            List<MezzoDiTrasporto> mezziTrattaSelezionata = sp.getMezziByTratta(trattaScelta);
+
+                                            if(mezziTrattaSelezionata.isEmpty()) {
+                                                System.out.println("Nessun mezzo è associato a questa tratta!");
+                                            }
+                                            else {
+                                                System.out.println("Ecco la lista di mezzi associati a questa tratta:");
+                                                mezziTrattaSelezionata.forEach(mezzo -> System.out.println("\n" + mezzo));
+                                            }
+                                        }
+
                                         break;
                                 }
 
@@ -186,10 +208,6 @@ public class Application {
 
 
 
-
-
-//        MezzoDiTrasporto mz1 = new MezzoDiTrasporto(12, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
-//        MezzoDiTrasporto mz2 = new MezzoDiTrasporto(342, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 ////
 //        Tratta t1 = new Tratta("milano", "malpensa", 213.4);
 //        Tratta t2 = new Tratta("milano", "linate", 155.4);

@@ -73,9 +73,9 @@ public class Tratta {
 
     @Override
     public String toString() {
-        return "Tratta: " + getPartenza() + "-"
+        return "|| Tratta: " + getPartenza() + "-"
                 + getArrivo()
                 + " || Tempo previsto: "
-                + getTempoPrevistoTratta();
+                + getTempoPrevistoTratta() + " ore.";
     }
 }

@@ -98,11 +98,6 @@ public class MezzoDiTrasporto {
 
     @Override
     public String toString() {
-        return "MezzoDiTrasporto{" +
-                "id='" + id + '\'' +
-                ", capienza=" + capienza +
-                ", statoMezzo=" + statoMezzo +
-                ", tipologiaMezzo=" + tipologiaMezzo +
-                '}';
+        return "|| " + tipologiaMezzo + "|| Capienza massima: " + capienza + " persone || Stato: " + statoMezzo;
     }
 }

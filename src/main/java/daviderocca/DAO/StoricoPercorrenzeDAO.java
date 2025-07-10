@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
+import java.util.List;
 import java.util.UUID;
 
 public class StoricoPercorrenzeDAO {
@@ -38,7 +39,7 @@ public class StoricoPercorrenzeDAO {
         System.out.println("Tratta assegnata al mezzo!");
     }
 
-    //CHIEDIAMO A RICCARDO SE HA SENSO
+
     public void numeroVolteMezzoTratta(MezzoDiTrasporto mezzoDiTrasporto, Tratta tratta) {
         TypedQuery<Long> query = entityManager.createQuery(
                 "SELECT COUNT(s) FROM StoricoPercorrenze s WHERE s.mezzoDiTrasporto = :mezzoDiTrasporto AND s.tratta = :tratta",
@@ -57,6 +58,13 @@ public class StoricoPercorrenzeDAO {
         query.setParameter("tratta", tratta);
         System.out.println("Il mezzo " + mezzoDiTrasporto.getId() + " percorre mediamente la tratta "
                 + tratta.getPartenza() + "-" + tratta.getArrivo() + " in " + query.getSingleResult() + " minuti");
+    }
+
+    public List<MezzoDiTrasporto> getMezziByTratta(Tratta tratta) {
+        TypedQuery<MezzoDiTrasporto> query = entityManager.createQuery("SELECT s.mezzoDiTrasporto FROM StoricoPercorrenze s WHERE s.tratta = :tratta",
+                MezzoDiTrasporto.class);
+        query.setParameter("tratta", tratta);
+        return query.getResultList();
     }
 
 }
