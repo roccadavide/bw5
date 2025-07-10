@@ -184,6 +184,7 @@ public class Application {
 
                                         if(scelta2 < 1 || scelta2 > listaTratte.size()) {
                                             System.out.println("Scelta non valida!");
+                                            //DA CAPIRE COME CONTINUARE
                                         } else {
                                             Tratta trattaScelta = listaTratte.get(scelta2 - 1);
 
