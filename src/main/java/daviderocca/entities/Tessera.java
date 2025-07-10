@@ -30,9 +30,10 @@ public class Tessera {
 
     public Tessera () {};
 
-    public Tessera(LocalDate dataEmissione, LocalDate dataRinnovo) {
+    public Tessera(LocalDate dataEmissione, LocalDate dataRinnovo, Utente utente) {
         this.dataEmissione = dataEmissione;
         this.dataRinnovo = dataRinnovo;
+        this.utenteTesserato=utente;
     }
 
     public UUID getNumeroTessera() {
