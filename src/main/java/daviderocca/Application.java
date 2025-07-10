@@ -172,8 +172,12 @@ public class Application {
                                                 System.out.println("Il rivenditore è chiuso!!!");
                                             }
                         }
-
-                    }
+                                        //----------------------------------------------LINEA DA NON SUPERARE------------------------------------------------------------------
+                                    case 2:
+                                        System.out.println("Questa è la lista delle tratte disponibili:");
+                                        listaTratte.forEach(tratta -> System.out.println("\n" + tratta));
+                                        break;
+                                }
 
                     break;
             }
