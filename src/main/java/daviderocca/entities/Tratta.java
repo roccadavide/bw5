@@ -73,11 +73,9 @@ public class Tratta {
 
     @Override
     public String toString() {
-        return "Tratta{" +
-                "id='" + id + '\'' +
-                ", partenza='" + partenza + '\'' +
-                ", arrivo='" + arrivo + '\'' +
-                ", tempoPrevistoTratta=" + tempoPrevistoTratta +
-                '}';
+        return "Tratta: " + getPartenza() + "-"
+                + getArrivo()
+                + " || Tempo previsto: "
+                + getTempoPrevistoTratta();
     }
 }
