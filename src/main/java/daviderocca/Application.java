@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -27,6 +28,7 @@ public class Application {
         PuntiVenditaDAO pd = new PuntiVenditaDAO(em);
         MezziDiTrasportoDAO md = new MezziDiTrasportoDAO(em);
         StoricoPercorrenzeDAO sp = new StoricoPercorrenzeDAO(em);
+        UtentiDAO ud = new UtentiDAO(em);
         TessereDAO ted=new TessereDAO(em);
 
 
@@ -47,53 +49,65 @@ public class Application {
                     System.out.println("Da che punto vendita vuoi acquistarlo? Inserisci matricola");
                     String matricola= in.nextLine();
                     if (pd.findById(UUID.fromString(matricola))!=null){
+                        PuntoVendita byId = pd.findById(UUID.fromString(matricola));
 
-                    }
+                        //CASISTICA IN CUI IL PUNTO VEDITA è UN RIVENDITORE AUTORIZZATO
 
+                        if( byId instanceof RivenditoreAutorizzato
+                                && ((RivenditoreAutorizzato) byId).getOrarioApertura().isBefore(LocalTime.now() )
+                                && ((RivenditoreAutorizzato) byId).getOrarioChiusura().isAfter(LocalTime.now()))
+                            {   System.out.println("Che titolo vuoi acquistare?");
+                                System.out.println("1) Biglietto singolo");
+                                System.out.println("2) Abbonamento");
+                                System.out.println("3) Tessera");
+                                scelta=in.nextInt();
 
-                    switch (scelta){
-                        case 1:
-                            System.out.println("Che titolo vuoi acquistare?");
-                            System.out.println("1) Biglietto singolo");
-                            System.out.println("2) Abbonamento");
-                            System.out.println("3) Tessera");
-
-                            scelta=in.nextInt();
-                            switch (scelta){
-                                case 1:
-                                    td.save(new Biglietto(LocalDate.now(),null));
+                                switch (scelta) {
+                                    case 1:
+                                        td.save(new Biglietto(LocalDate.now(), null));
                                     break;
-                                case 2:
-                                    System.out.println("Inserisci numero tessera");
-                                    String numeroTessera=in.nextLine();
+                                    case 2:
+                                        System.out.println("Inserisci numero tessera");
+                                        String numeroTessera=in.nextLine();
+                                        if(ted.findById(UUID.fromString(numeroTessera))!= null) {
+
+                                            ted.renewalById(UUID.fromString(numeroTessera));
 
 
-                                    if (ted.findById(UUID.fromString(numeroTessera))!=null){
+                                            System.out.println("Scegli la tipologia di abbonamento:");
+                                            System.out.println("1) Settimanale");
+                                            System.out.println("2)Mensile");
+
+                                            scelta=in.nextInt();
+
+                                            if(scelta==1)
+
+                                                td.save(new Abbonamento(LocalDate.now(), TipoAbbonamento.SETTIMANALE));
+
+                                            else
+                                                td.save(new Abbonamento(LocalDate.now(), TipoAbbonamento.MENSILE));
+                                        }
+
+                                        else {
+                                            System.out.println("La Tessera " + numeroTessera + " è inesistente" );
+                                            System.out.println("Inserisci il codice della tua carta d'identità" );
+
+                                            // INSERIRE DOWILE PER VERIFICARE IL CORRETTO INSERIMENTO DEI DATI DELLA CARTA IDENTITà
+
+                                            String cartaIdentita = in.nextLine();
+                                            ud.findById(UUID.fromString(cartaIdentita));
+                                            if (ud.findById(UUID.fromString(cartaIdentita)) != null)
+                                            {ted.save(new Tessera(LocalDate.now(), null, ud.findById(UUID.fromString(cartaIdentita))));
+                                            }
 
 
-
-                                        System.out.println("Scegli la tipologia di abbonamento:");
-                                        System.out.println("1) Settimanale");
-                                        System.out.println("2)Mensile");
-
-                                        scelta=in.nextInt();
-
-                                        if(scelta==1)
-
-                                            td.save(new Abbonamento(LocalDate.now(), TipoAbbonamento.SETTIMANALE));
-
-                                        else
-                                            td.save(new Abbonamento(LocalDate.now(), TipoAbbonamento.MENSILE));
-                                    }
+                                        }
+                                        break;
+                                }
 
 
-
-
-
-                            }
-
+                        }
                     }
-
 
 
             }
