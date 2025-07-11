@@ -1,52 +1,40 @@
 package daviderocca.entities;
 
 
-import daviderocca.entities.enums.StatoPuntoVendita;
-import daviderocca.entities.enums.TipologiaVendita;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import daviderocca.enums.StatoDistributore;
+import jakarta.persistence.*;
 
-//RICORDATI DI SETTARE LA TABELLA MANY TO MANY
-public class PuntoVendita {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "punto_vendita")
+public abstract class PuntoVendita {
 
     @Id
+    @Column(name = "id_punto_vendita", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
-
-    private TipologiaVendita tipologiaVendita;
-
-    private StatoPuntoVendita statoPuntoVendita;
+    private UUID id;
 
     private String indirizzo;
 
+    @OneToMany(mappedBy = "puntoVendita")
+    private List<TitoloDiViaggio> titoliDiViaggio = new ArrayList<>();
+
+
+
     public PuntoVendita () {};
 
-    public PuntoVendita(String id, TipologiaVendita tipologiaVendita, StatoPuntoVendita statoPuntoVendita, String indirizzo) {
-        this.id = id;
-        this.tipologiaVendita = tipologiaVendita;
-        this.statoPuntoVendita = statoPuntoVendita;
+    public PuntoVendita(String indirizzo) {
         this.indirizzo = indirizzo;
     }
 
-    public String getId() {
+
+
+    public UUID getId() {
         return id;
-    }
-
-    public TipologiaVendita getTipologiaVendita() {
-        return tipologiaVendita;
-    }
-
-    public void setTipologiaVendita(TipologiaVendita tipologiaVendita) {
-        this.tipologiaVendita = tipologiaVendita;
-    }
-
-    public StatoPuntoVendita getStatoPuntoVendita() {
-        return statoPuntoVendita;
-    }
-
-    public void setStatoPuntoVendita(StatoPuntoVendita statoPuntoVendita) {
-        this.statoPuntoVendita = statoPuntoVendita;
     }
 
     public String getIndirizzo() {
@@ -57,13 +45,20 @@ public class PuntoVendita {
         this.indirizzo = indirizzo;
     }
 
+    public List<TitoloDiViaggio> getTitoliDiViaggio() {
+        return titoliDiViaggio;
+    }
+
+    public void setTitoliDiViaggio(List<TitoloDiViaggio> titoliDiViaggio) {
+        this.titoliDiViaggio = titoliDiViaggio;
+    }
+
     @Override
     public String toString() {
         return "PuntoVendita{" +
-                "id='" + id + '\'' +
-                ", tipologiaVendita=" + tipologiaVendita +
-                ", statoPuntoVendita=" + statoPuntoVendita +
+                "id=" + id +
                 ", indirizzo='" + indirizzo + '\'' +
+                ", titoliDiViaggio=" + titoliDiViaggio +
                 '}';
     }
 }

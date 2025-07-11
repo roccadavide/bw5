@@ -4,30 +4,33 @@ package daviderocca.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
-
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "titolo_di_viaggio")
 public abstract class TitoloDiViaggio {
+
     @Id
-    @Column(name = "id_titolo", nullable = false)
+    @Column(name = "id_titolo_di_viaggio", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID idTitolo;
+
     @Column(name = "data_emissione")
     private LocalDate dataEmissione;
-    @Column(name = "punto_emissione")
-    private String puntoDiEmissione;
+
+    @ManyToOne
+    @JoinColumn(name = "id_punto_vendita")
+    private PuntoVendita puntoVendita;
 
     public TitoloDiViaggio () {};
 
-    public TitoloDiViaggio(String id, LocalDate dataEmissione, String puntoDiEmissione) {
-        this.id = id;
+    public TitoloDiViaggio(LocalDate dataEmissione) {
         this.dataEmissione = dataEmissione;
-        this.puntoDiEmissione = puntoDiEmissione;
     }
 
-    public String getId() {
-        return id;
+    public UUID getIdTitolo() {
+        return idTitolo;
     }
 
     public LocalDate getDataEmissione() {
@@ -38,20 +41,19 @@ public abstract class TitoloDiViaggio {
         this.dataEmissione = dataEmissione;
     }
 
-    public String getPuntoDiEmissione() {
-        return puntoDiEmissione;
+    public PuntoVendita getPuntoVendita() {
+        return puntoVendita;
     }
 
-    public void setPuntoDiEmissione(String puntoDiEmissione) {
-        this.puntoDiEmissione = puntoDiEmissione;
+    public void setPuntoVendita(PuntoVendita puntoVendita) {
+        this.puntoVendita = puntoVendita;
     }
 
     @Override
     public String toString() {
         return "TitoloDiViaggio{" +
-                "id='" + id + '\'' +
+                "idTitolo='" + idTitolo + '\'' +
                 ", dataEmissione=" + dataEmissione +
-                ", puntoDiEmissione='" + puntoDiEmissione + '\'' +
                 '}';
     }
 }

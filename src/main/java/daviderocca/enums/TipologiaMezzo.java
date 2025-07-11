@@ -1,4 +1,4 @@
-package daviderocca.entities.enums;
+package daviderocca.enums;
 
 public enum TipologiaMezzo {
     AUTOBUS, TRAM

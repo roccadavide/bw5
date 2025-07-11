@@ -1,48 +1,72 @@
 package daviderocca.entities;
 
-import daviderocca.entities.enums.StatoMezzo;
-import daviderocca.entities.enums.TipologiaMezzo;
+import daviderocca.enums.StatoMezzo;
+import daviderocca.enums.TipologiaMezzo;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @Entity
-//RICORDATI DI SETTARE LA TABELLA MANY TO MANY
 @Table (name = "mezzi_di_trasporto")
 public class MezzoDiTrasporto {
 
     @Id
     @Column(name = "id_mezzo", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
-    private int capienza;
+    @Column(name = "capienza_massima")
+    private int capienzaMassima;
+
+    @Column(name = "numero_passeggeri_attuali")
+    private int numeroPasseggeriAttuali;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "stato_mezzo")
     private StatoMezzo statoMezzo;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipologia_mezzo")
     private TipologiaMezzo tipologiaMezzo;
 
-    private Tratta tratta;
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<Biglietto> bigliettiObliterati = new ArrayList<>();
+
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<StoricoPercorrenze> storiciPercorrenze = new ArrayList<>();
+
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<GuastoMezzo> guastiMezzo = new ArrayList<>();
 
     private MezzoDiTrasporto () {};
 
-    public MezzoDiTrasporto(String id, int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo, Tratta tratta) {
-        this.id = id;
-        this.capienza = capienza;
+    public MezzoDiTrasporto(int capienzaMassima, int numeroPasseggeriAttuali, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo) {
+        this.capienzaMassima = capienzaMassima;
+        this.numeroPasseggeriAttuali = numeroPasseggeriAttuali;
         this.statoMezzo = statoMezzo;
         this.tipologiaMezzo = tipologiaMezzo;
-        this.tratta = tratta;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public int getCapienza() {
-        return capienza;
+    public int getCapienzaMassima() {
+        return capienzaMassima;
     }
 
-    public void setCapienza(int capienza) {
-        this.capienza = capienza;
+    public void setCapienzaMassima(int capienzaMassima) {
+        this.capienzaMassima = capienzaMassima;
+    }
+
+    public int getNumeroPasseggeriAttuali() {
+        return numeroPasseggeriAttuali;
+    }
+
+    public void setNumeroPasseggeriAttuali(int numeroPasseggeriAttuali) {
+        this.numeroPasseggeriAttuali = numeroPasseggeriAttuali;
     }
 
     public StatoMezzo getStatoMezzo() {
@@ -61,22 +85,32 @@ public class MezzoDiTrasporto {
         this.tipologiaMezzo = tipologiaMezzo;
     }
 
-    public Tratta getTratta() {
-        return tratta;
+    public List<Biglietto> getBigliettiObliterati() {
+        return bigliettiObliterati;
     }
 
-    public void setTratta(Tratta tratta) {
-        this.tratta = tratta;
+    public void setBigliettiObliterati(List<Biglietto> bigliettiObliterati) {
+        this.bigliettiObliterati = bigliettiObliterati;
+    }
+
+    public List<StoricoPercorrenze> getStoriciPercorrenze() {
+        return storiciPercorrenze;
+    }
+
+    public void setStoriciPercorrenze(List<StoricoPercorrenze> storiciPercorrenze) {
+        this.storiciPercorrenze = storiciPercorrenze;
+    }
+
+    public List<GuastoMezzo> getGuastiMezzo() {
+        return guastiMezzo;
+    }
+
+    public void setGuastiMezzo(List<GuastoMezzo> guastiMezzo) {
+        this.guastiMezzo = guastiMezzo;
     }
 
     @Override
     public String toString() {
-        return "MezzoDiTrasporto{" +
-                "id='" + id + '\'' +
-                ", capienza=" + capienza +
-                ", statoMezzo=" + statoMezzo +
-                ", tipologiaMezzo=" + tipologiaMezzo +
-                ", tratta=" + tratta +
-                '}';
+        return "||" + tipologiaMezzo + " ||Numero passeggeri attuale: " + numeroPasseggeriAttuali + " ||Capienza massima: " + capienzaMassima + " persone ||Stato: " + statoMezzo;
     }
 }
