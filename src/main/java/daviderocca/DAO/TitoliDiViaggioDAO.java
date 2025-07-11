@@ -57,16 +57,21 @@ public class TitoliDiViaggioDAO {
 
     }
 
-    public List<TitoloDiViaggio> findEntryPointByTitleAndPeriod(LocalDate a , LocalDate b,int idPuntoVendita) {
-        TypedQuery <TitoloDiViaggio> query= entityManager.createQuery
-                ("SELECT COUNT t from TitoloDiViaggio t WHERE data_emissione BETWEEN :a AND :b AND id_punto_vendita=:idPuntoVendita",TitoloDiViaggio.class);
+    public long countTitoliByPeriodAndPuntoVendita(LocalDate a, LocalDate b, UUID idPuntoVendita) {
+        TypedQuery<Long> query = entityManager.createQuery(
+                "SELECT COUNT(t) FROM TitoloDiViaggio t WHERE t.dataEmissione BETWEEN :a AND :b AND t.puntoVendita.id = :idPuntoVendita",
+                Long.class);
 
-        query.setParameter("a",a);
-        query.setParameter("b",b);
-        query.setParameter("idPuntoVendita",idPuntoVendita);
+        query.setParameter("a", a);
+        query.setParameter("b", b);
+        query.setParameter("idPuntoVendita", idPuntoVendita);
+        long count = query.getSingleResult();
 
-        return query.getResultList();
+        System.out.println("Numero di titoli venduti: " + count);
+
+        return count;
     }
+
 
     public void findTicketByTransport(UUID idMezzo) {
         TypedQuery<Long> query= entityManager.createQuery

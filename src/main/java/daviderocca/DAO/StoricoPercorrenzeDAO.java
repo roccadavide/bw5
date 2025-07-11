@@ -42,7 +42,7 @@ public class StoricoPercorrenzeDAO {
     //CHIEDIAMO A RICCARDO SE HA SENSO
     public void numeroVolteMezzoTratta(MezzoDiTrasporto mezzoDiTrasporto, Tratta tratta) {
         TypedQuery<Long> query = entityManager.createQuery(
-                "SELECT COUNT(s) FROM StoricoPercorrenze s WHERE s.mezzoDiTrasporto = :mezzoDiTrasporto AND s.tratta = :tratta",
+                "SELECT COUNT(s) FROM StoricoPercorrenze s WHERE s.mezzoDiTrasporto = :mezzoDiTrasporto",
                 Long.class);
         query.setParameter("mezzoDiTrasporto", mezzoDiTrasporto);
         query.setParameter("tratta", tratta);
@@ -50,14 +50,16 @@ public class StoricoPercorrenzeDAO {
                 + " dalla tratta " + tratta.getPartenza() + "-" + tratta.getArrivo());
     }
 
-    public void mediaTempoEffettivo(MezzoDiTrasporto mezzoDiTrasporto, Tratta tratta) {
+    public Double mediaTempoEffettivo(UUID idMezzo) {
         TypedQuery<Double> query = entityManager.createQuery(
-                "SELECT AVG(s.tempoEffettivoTratta) FROM StoricoPercorrenze s WHERE s.mezzoDiTrasporto = :mezzoDiTrasporto AND s.tratta = :tratta",
+                "SELECT AVG(s.tempoEffettivoTratta) FROM StoricoPercorrenze s WHERE s.mezzoDiTrasporto.id = :idMezzo",
                 Double.class);
-        query.setParameter("mezzoDiTrasporto", mezzoDiTrasporto);
-        query.setParameter("tratta", tratta);
-        System.out.println("Il mezzo " + mezzoDiTrasporto.getId() + " percorre mediamente la tratta "
-                + tratta.getPartenza() + "-" + tratta.getArrivo() + " in " + query.getSingleResult() + " minuti");
+        query.setParameter("idMezzo", idMezzo);
+
+        Double mediaTratta= query.getSingleResult();
+
+        System.out.println("Il mezzo " + idMezzo+ " percorre mediamente la sua tratta in " + mediaTratta + " minuti");
+    return mediaTratta;
     }
     public List<MezzoDiTrasporto> getMezziByTratta(Tratta tratta) {
         TypedQuery<MezzoDiTrasporto> query = entityManager.createQuery("SELECT s.mezzoDiTrasporto FROM StoricoPercorrenze s WHERE s.tratta = :tratta",

@@ -954,6 +954,46 @@ public class Application {
                             }
 
                             break;
+
+
+                    }
+                    //amministratore
+                case 2:
+                    System.out.println("Ciao Amministratore, scegli che operazione effettuare!");
+                    System.out.println("1) Ricava il numero di titoli di vendita in un periodo e un punto vendita definiti da te ");
+                    System.out.println("2) Verifica lo stato di un veicolo in un periodo definito da te ");
+                    System.out.println("3) Verifica il tempo medio di percorrenza di un mezzo per la sua tratta");
+                    int sceltaAmministratore;
+                    sceltaAmministratore=in.nextInt();
+                    in.nextLine();
+
+                    switch (sceltaAmministratore){
+                        case 1:
+                        System.out.println("inserisci periodo");
+                        System.out.println("inserisci data a");
+                        String dataA=in.nextLine();
+                        System.out.println("inserisci data b");
+                        String dataB=in.nextLine();
+                        System.out.println("inserisci punto vendita");
+                        String pv= in.nextLine();
+                        td.countTitoliByPeriodAndPuntoVendita(LocalDate.parse(dataA),LocalDate.parse(dataB), UUID.fromString(pv));
+                        break;
+                        case 2:
+                            System.out.println("inserisci periodo");
+                            System.out.println("inserisci data a");
+                            String dataInizio=in.nextLine();
+                            System.out.println("inserisci data b");
+                            String dataFine=in.nextLine();
+                            System.out.println("inserisci id mezzo");
+                            String mezzo= in.nextLine();
+                            md.findByPeriod(LocalDate.parse(dataInizio),LocalDate.parse(dataFine), UUID.fromString(mezzo));
+                        break;
+                        case 3:
+                            System.out.println("inserisci id mezzo");
+
+                            String idMezzo=in.nextLine();
+                            sp.mediaTempoEffettivo(UUID.fromString(idMezzo));
+                            break;
                     }
                     break;
             }

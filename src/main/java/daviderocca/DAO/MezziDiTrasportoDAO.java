@@ -91,16 +91,23 @@ public class MezziDiTrasportoDAO {
 
     }
 
-    public List<GuastoMezzo> findByPeriod(LocalDate a , LocalDate b, UUID id){
-        TypedQuery<GuastoMezzo> query= entityManager.createQuery
-                ("SELECT g FROM GuastoMezzo g WHERE g.mezzoDiTrasporto.id_mezzo=:id AND g.dataGuasto >= :a AND g.dataRientro <= :b",GuastoMezzo.class);
-        query.setParameter("a",a);
-        query.setParameter("b",b);
-        query.setParameter("id",id);
+    public List<GuastoMezzo> findByPeriod(LocalDate a , LocalDate b, UUID id) {
+        TypedQuery<GuastoMezzo> query = entityManager.createQuery(
+                "SELECT g FROM GuastoMezzo g WHERE g.mezzoDiTrasporto.id = :id AND g.dataDiGuasto >= :a AND g.dataDiRitornoInServizio <= :b",
+                GuastoMezzo.class
+        );
 
+        query.setParameter("a", a);
+        query.setParameter("b", b);
+        query.setParameter("id", id);
 
-        return query.getResultList();
+        List<GuastoMezzo> guasti = query.getResultList();
+
+        System.out.println("La lista dei guasti per il mezzo " + id + " è: " + guasti);
+
+        return guasti;
     }
+
     public List<Tratta> getAllTratte() {
         return entityManager.createQuery("SELECT t FROM Tratta t", Tratta.class).getResultList();
     }
