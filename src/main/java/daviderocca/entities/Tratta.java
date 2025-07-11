@@ -75,7 +75,7 @@ public class Tratta {
     public String toString() {
         return "Tratta: " + getPartenza() + "-"
                 + getArrivo()
-                + " || Tempo previsto: "
-                + getTempoPrevistoTratta();
+                + " Tempo previsto: "
+                + getTempoPrevistoTratta() + " minuti.";
     }
 }

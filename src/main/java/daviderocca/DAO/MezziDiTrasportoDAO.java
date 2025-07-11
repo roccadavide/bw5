@@ -45,6 +45,21 @@ public class MezziDiTrasportoDAO {
 
     }
 
+    public void saveGuasto(GuastoMezzo guasto) {
+
+        EntityTransaction et = entityManager.getTransaction();
+
+        et.begin();
+
+        entityManager.persist(guasto);
+
+        et.commit();
+
+        System.out.println("Il guasto" + guasto.getId() +" è stato correttamente salvato");
+
+    }
+
+
     public MezzoDiTrasporto findMezzoById(UUID id){
 
         MezzoDiTrasporto trovato=entityManager.find(MezzoDiTrasporto.class,id);

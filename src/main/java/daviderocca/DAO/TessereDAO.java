@@ -1,9 +1,12 @@
 package daviderocca.DAO;
 
 import daviderocca.entities.Tessera;
+import daviderocca.entities.Utente;
 import daviderocca.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -36,6 +39,18 @@ public class TessereDAO {
 
         return  trovata;
     }
+
+    public Tessera findByUtente(Utente utente) {
+        try {
+            TypedQuery<Tessera> query = entityManager.createQuery(
+                    "SELECT t FROM Tessera t WHERE t.utenteTesserato = :utente", Tessera.class);
+            query.setParameter("utente", utente);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 
     public void deleteById(UUID id) {
 

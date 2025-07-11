@@ -1,6 +1,7 @@
 package daviderocca.DAO;
 
 import daviderocca.entities.TitoloDiViaggio;
+import daviderocca.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
@@ -88,6 +89,10 @@ public class TitoliDiViaggioDAO {
 
         System.out.println("Il numero di biglietti vidimati per il periodo " + a + "/ " + b +" è uguale a: " + count);
 
+    }
+
+    public List<Tratta> getAllTratte() {
+        return entityManager.createQuery("SELECT t FROM Tratta t", Tratta.class).getResultList();
     }
 
 }
