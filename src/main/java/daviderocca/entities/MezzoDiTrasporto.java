@@ -17,7 +17,11 @@ public class MezzoDiTrasporto {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private int capienza;
+    @Column(name = "capienza_massima")
+    private int capienzaMassima;
+
+    @Column(name = "numero_passeggeri_attuali")
+    private int numeroPasseggeriAttuali;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "stato_mezzo")
@@ -38,8 +42,9 @@ public class MezzoDiTrasporto {
 
     private MezzoDiTrasporto () {};
 
-    public MezzoDiTrasporto(int capienza, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo) {
-        this.capienza = capienza;
+    public MezzoDiTrasporto(int capienzaMassima, int numeroPasseggeriAttuali, StatoMezzo statoMezzo, TipologiaMezzo tipologiaMezzo) {
+        this.capienzaMassima = capienzaMassima;
+        this.numeroPasseggeriAttuali = numeroPasseggeriAttuali;
         this.statoMezzo = statoMezzo;
         this.tipologiaMezzo = tipologiaMezzo;
     }
@@ -48,12 +53,20 @@ public class MezzoDiTrasporto {
         return id;
     }
 
-    public int getCapienza() {
-        return capienza;
+    public int getCapienzaMassima() {
+        return capienzaMassima;
     }
 
-    public void setCapienza(int capienza) {
-        this.capienza = capienza;
+    public void setCapienzaMassima(int capienzaMassima) {
+        this.capienzaMassima = capienzaMassima;
+    }
+
+    public int getNumeroPasseggeriAttuali() {
+        return numeroPasseggeriAttuali;
+    }
+
+    public void setNumeroPasseggeriAttuali(int numeroPasseggeriAttuali) {
+        this.numeroPasseggeriAttuali = numeroPasseggeriAttuali;
     }
 
     public StatoMezzo getStatoMezzo() {
@@ -98,6 +111,6 @@ public class MezzoDiTrasporto {
 
     @Override
     public String toString() {
-        return "|| " + tipologiaMezzo + "|| Capienza massima: " + capienza + " persone || Stato: " + statoMezzo;
+        return "||" + tipologiaMezzo + " ||Numero passeggeri attuale: " + numeroPasseggeriAttuali + " ||Capienza massima: " + capienzaMassima + " persone ||Stato: " + statoMezzo;
     }
 }
