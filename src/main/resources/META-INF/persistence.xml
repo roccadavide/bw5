@@ -5,18 +5,18 @@
                                  https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="bw5pu">
-        <class>daviderocca.entities.Abbonamento</class>
-        <class>daviderocca.entities.Biglietto</class>
-        <class>daviderocca.entities.GuastoMezzo</class>
-        <class>daviderocca.entities.MezzoDiTrasporto</class>
-        <class>daviderocca.entities.PuntoVendita</class>
-        <class>daviderocca.entities.StoricoPercorrenze</class>
-        <class>daviderocca.entities.Tessera</class>
-        <class>daviderocca.entities.TitoloDiViaggio</class>
-        <class>daviderocca.entities.Tratta</class>
-        <class>daviderocca.entities.Utente</class>
-        <class>daviderocca.entities.DistributoreAutomatico</class>
-        <class>daviderocca.entities.RivenditoreAutorizzato</class>
+        <class>borislavk.entities.Abbonamento</class>
+        <class>borislavk.entities.Biglietto</class>
+        <class>borislavk.entities.GuastoMezzo</class>
+        <class>borislavk.entities.MezzoDiTrasporto</class>
+        <class>borislavk.entities.PuntoVendita</class>
+        <class>borislavk.entities.StoricoPercorrenze</class>
+        <class>borislavk.entities.Tessera</class>
+        <class>borislavk.entities.TitoloDiViaggio</class>
+        <class>borislavk.entities.Tratta</class>
+        <class>borislavk.entities.Utente</class>
+        <class>borislavk.entities.DistributoreAutomatico</class>
+        <class>borislavk.entities.RivenditoreAutorizzato</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/aziendatrasporti"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
