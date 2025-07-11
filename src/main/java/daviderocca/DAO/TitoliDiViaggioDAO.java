@@ -28,22 +28,22 @@ public class TitoliDiViaggioDAO {
 
         et.commit();
 
-        System.out.println("il titolo di viaggio " + titoloDiViaggio + " è stato correttamente salvato");
+        System.out.println("il titolo di viaggio è stato correttamente salvato, inserisci l'id quando richiesto -->" + titoloDiViaggio.getIdTitolo());
 
     }
 
-    public TitoloDiViaggio findById(int id){
+    public TitoloDiViaggio findById(UUID id){
 
-        TitoloDiViaggio trovato=entityManager.find(TitoloDiViaggio.class,id);
+        TitoloDiViaggio trovato = entityManager.find(TitoloDiViaggio.class, id);
         if(trovato==null)
             System.out.println("il titolo di viaggio " + trovato + " non è stato trovato");
 
         return trovato;
     }
 
-    public  void deleteById(int id) {
+    public  void deleteById(UUID id) {
 
-        TitoloDiViaggio daEliminare=this.findById(id);
+        TitoloDiViaggio daEliminare = this.findById(id);
 
         EntityTransaction et=entityManager.getTransaction();
 

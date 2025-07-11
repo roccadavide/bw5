@@ -30,6 +30,7 @@ public class Application {
         UtentiDAO ud = new UtentiDAO(em);
         TessereDAO ted = new TessereDAO(em);
 
+        //UTENTI
 //        Utente u1= new Utente(LocalDate.of(1993, 4, 12), "Rossi", "Mario");
 //        ud.save(u1);
 //
@@ -180,6 +181,8 @@ public class Application {
 //        Tessera ts20=new Tessera(LocalDate.of(2018, 1, 7), null, u20);
 //        ted.save(ts20);
 //
+//
+//        //RIVENDITORE AUTORIZZATO
 //        RivenditoreAutorizzato r1 = new RivenditoreAutorizzato("via Verdi 32", LocalTime.of(13, 00), LocalTime.of(18, 30));
 //        pd.savePuntoVendita(r1);
 //
@@ -225,6 +228,8 @@ public class Application {
 //        RivenditoreAutorizzato r15 = new RivenditoreAutorizzato("piazza Duomo", LocalTime.of(17, 00), LocalTime.of(23, 30));
 //        pd.savePuntoVendita(r15);
 //
+//
+//        //DISTRIBUTORI AUTOMATICI
 //        DistributoreAutomatico d1 = new DistributoreAutomatico ("via Roma 13", StatoDistributore.ATTIVO);
 //        pd.savePuntoVendita(d1);
 //
@@ -285,6 +290,9 @@ public class Application {
 //        DistributoreAutomatico d20 = new DistributoreAutomatico ("corso Italia", StatoDistributore.FUORI_SERVIZIO);
 //        pd.savePuntoVendita(d20);
 //
+//
+//        //TRATTA
+//
 //        Tratta t1 = new Tratta("Milano Centrale", "Malpensa aeroporto", 213.4);
 //        md.save(t1);
 //
@@ -315,34 +323,16 @@ public class Application {
 //        Tratta t10 = new Tratta("San Siro stadio", "Bovisa", 125.4);
 //        md.save(t10);
 //
-//        Tratta t11 = new Tratta("San Siro stadio", "Piola", 135.5);
-//        md.save(t11);
 //
-//        Tratta t12 = new Tratta("Piola", "Bovisa", 55.5);
-//        md.save(t12);
-//
-//        Tratta t13 = new Tratta("Piola", "Monumentale", 36.2);
-//        md.save(t13);
-//
-//        Tratta t14 = new Tratta("Piola", "Garibaldi", 19.4);
-//        md.save(t14);
-//
-//        Tratta t15 = new Tratta("Piola", "CittÃ  Studi", 15.5);
-//        md.save(t15);
-//
-//        Tratta t16 = new Tratta("Piola", "Isola", 37.2);
-//        md.save(t16);
-//
-//        Tratta t17 = new Tratta("Piola", "Lotto", 42.3);
-//        md.save(t17);
+//        //MEZZI
 //
 //        MezzoDiTrasporto mz1 = new MezzoDiTrasporto(20, 11, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz1);
 //
-//        MezzoDiTrasporto mz2 = new MezzoDiTrasporto(20, 5,  StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz2 = new MezzoDiTrasporto(20, 5,  StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
 //        md.save(mz2);
 //
-//        MezzoDiTrasporto mz3 = new MezzoDiTrasporto(20, 20,  StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz3 = new MezzoDiTrasporto(20, 20,  StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz3);
 //
 //        MezzoDiTrasporto mz4 = new MezzoDiTrasporto(20, 6,  StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
@@ -360,65 +350,64 @@ public class Application {
 //        MezzoDiTrasporto mz8 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz8);
 //
-//        MezzoDiTrasporto mz9 = new MezzoDiTrasporto(20, 3,  StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz9 = new MezzoDiTrasporto(20, 3,  StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz9);
 //
-//        MezzoDiTrasporto mz10 = new MezzoDiTrasporto(20, 11, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz10 = new MezzoDiTrasporto(20, 11, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz10);
 //
-//        MezzoDiTrasporto mz11 = new MezzoDiTrasporto(20, 14, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz11 = new MezzoDiTrasporto(20, 14, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz11);
 //
-//        MezzoDiTrasporto mz12 = new MezzoDiTrasporto(20, 13, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz12 = new MezzoDiTrasporto(20, 13, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz12);
 //
 //        MezzoDiTrasporto mz13 = new MezzoDiTrasporto(20, 19, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz13);
 //
-//        MezzoDiTrasporto mz14 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz14 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz14);
 //
 //        MezzoDiTrasporto mz15 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
 //        md.save(mz15);
 //
-//        MezzoDiTrasporto mz16 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz16 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz16);
 //
 //        MezzoDiTrasporto mz17 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
 //        md.save(mz17);
 //
-//        MezzoDiTrasporto mz18 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz18 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz18);
 //
 //        MezzoDiTrasporto mz19 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
 //        md.save(mz19);
 //
-//        MezzoDiTrasporto mz20 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
+//        MezzoDiTrasporto mz20 = new MezzoDiTrasporto(20, 0, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz20);
-//
 //
 //        MezzoDiTrasporto mz21 = new MezzoDiTrasporto(27, 22, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz21);
 //
-//        MezzoDiTrasporto mz22 = new MezzoDiTrasporto(27, 19, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
+//        MezzoDiTrasporto mz22 = new MezzoDiTrasporto(27, 19, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz22);
 //
 //        MezzoDiTrasporto mz23 = new MezzoDiTrasporto(27, 2, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz23);
 //
-//        MezzoDiTrasporto mz24 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
+//        MezzoDiTrasporto mz24 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
 //        md.save(mz24);
 //
-//        MezzoDiTrasporto mz25 = new MezzoDiTrasporto(27, 15, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
+//        MezzoDiTrasporto mz25 = new MezzoDiTrasporto(27, 15, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz25);
 //
-//        MezzoDiTrasporto mz26 = new MezzoDiTrasporto(27, 22, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
+//        MezzoDiTrasporto mz26 = new MezzoDiTrasporto(27, 22, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz26);
 //
-//        MezzoDiTrasporto mz27 = new MezzoDiTrasporto(27, 25, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
+//        MezzoDiTrasporto mz27 = new MezzoDiTrasporto(27, 25, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.AUTOBUS);
 //        md.save(mz27);
 //
-//        MezzoDiTrasporto mz28 = new MezzoDiTrasporto(27, 13, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
+//        MezzoDiTrasporto mz28 = new MezzoDiTrasporto(27, 13, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.AUTOBUS);
 //        md.save(mz28);
 //
 //        MezzoDiTrasporto mz29 = new MezzoDiTrasporto(27, 17, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
@@ -427,38 +416,59 @@ public class Application {
 //        MezzoDiTrasporto mz30 = new MezzoDiTrasporto(27, 9, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
 //        md.save(mz30);
 //
-//        MezzoDiTrasporto mz31 = new MezzoDiTrasporto(27, 8, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
-//        md.save(mz31);
 //
-//        MezzoDiTrasporto mz32 = new MezzoDiTrasporto(27, 12, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
-//        md.save(mz32);
+//        //Tratta 1: Milano Centrale - Malpensa aeroporto
+//        sp.assegnaTrattaAlMezzo(mz1, t1, 55.2);
+//        sp.assegnaTrattaAlMezzo(mz2, t1, 43.1);
+//        sp.assegnaTrattaAlMezzo(mz3, t1, 72.7);
 //
-//        MezzoDiTrasporto mz33 = new MezzoDiTrasporto(27, 21, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
-//        md.save(mz33);
+//        //Tratta 2: Milano Centrale - Linate aeroporto
+//        sp.assegnaTrattaAlMezzo(mz4, t2, 35.6);
+//        sp.assegnaTrattaAlMezzo(mz5, t2, 48.8);
+//        sp.assegnaTrattaAlMezzo(mz6, t2, 59.3);
 //
-//        MezzoDiTrasporto mz34 = new MezzoDiTrasporto(27, 27, StatoMezzo.IN_SERVIZIO, TipologiaMezzo.TRAM);
-//        md.save(mz34);
+//        //Tratta 3: Milano Centrale - Orio AL Serio aeroporto
+//        sp.assegnaTrattaAlMezzo(mz7, t3, 66.1);
+//        sp.assegnaTrattaAlMezzo(mz8, t3, 53.0);
+//        sp.assegnaTrattaAlMezzo(mz9, t3, 77.5);
 //
-//        MezzoDiTrasporto mz35 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.TRAM);
-//        md.save(mz35);
+//        //Tratta 4: Duomo - San Siro stadio
+//        sp.assegnaTrattaAlMezzo(mz10, t4, 24.3);
+//        sp.assegnaTrattaAlMezzo(mz11, t4, 37.9);
+//        sp.assegnaTrattaAlMezzo(mz12, t4, 41.7);
 //
-//        MezzoDiTrasporto mz36 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.TRAM);
-//        md.save(mz36);
+//        //Tratta 5: Duomo - Assago
+//        sp.assegnaTrattaAlMezzo(mz13, t5, 58.6);
+//        sp.assegnaTrattaAlMezzo(mz14, t5, 49.2);
+//        sp.assegnaTrattaAlMezzo(mz15, t5, 34.1);
 //
-//        MezzoDiTrasporto mz37 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.TRAM);
-//        md.save(mz37);
+//        //Tratta 6: Duomo - Loreto
+//        sp.assegnaTrattaAlMezzo(mz16, t6, 22.4);
+//        sp.assegnaTrattaAlMezzo(mz17, t6, 18.5);
+//        sp.assegnaTrattaAlMezzo(mz18, t6, 30.9);
 //
-//        MezzoDiTrasporto mz38 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.TRAM);
-//        md.save(mz38);
+//        //Tratta 7: Duomo - Precotto
+//        sp.assegnaTrattaAlMezzo(mz19, t7, 67.3);
+//        sp.assegnaTrattaAlMezzo(mz20, t7, 59.8);
+//        sp.assegnaTrattaAlMezzo(mz21, t7, 72.0);
 //
-//        MezzoDiTrasporto mz39 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.TRAM);
-//        md.save(mz39);
+//        //Tratta 8: Duomo - Roh fiera
+//        sp.assegnaTrattaAlMezzo(mz22, t8, 80.1);
+//        sp.assegnaTrattaAlMezzo(mz23, t8, 66.6);
+//        sp.assegnaTrattaAlMezzo(mz24, t8, 51.9);
 //
-//        MezzoDiTrasporto mz40 = new MezzoDiTrasporto(27, 0, StatoMezzo.IN_MANUTENZIONE, TipologiaMezzo.TRAM);
-//        md.save(mz40);
+//        //Tratta 9: San Siro stadio - Rho
+//        sp.assegnaTrattaAlMezzo(mz25, t9, 74.2);
+//        sp.assegnaTrattaAlMezzo(mz26, t9, 61.3);
+//        sp.assegnaTrattaAlMezzo(mz27, t9, 48.5);
+//
+//        //Tratta 10: San Siro stadio - Bovisa
+//        sp.assegnaTrattaAlMezzo(mz28, t10, 43.8);
+//        sp.assegnaTrattaAlMezzo(mz29, t10, 38.4);
+//        sp.assegnaTrattaAlMezzo(mz30, t10, 29.7);
 //
 //        GuastoMezzo g1 = new GuastoMezzo("Perdita olio motore", LocalDate.of(2025, 6, 10), LocalDate.of(2025, 6, 12));
-//        g1.setMezzoDiTrasporto(mz1);
+//        g1.setMezzoDiTrasporto(mz2);
 //        md.saveGuasto(g1);
 //
 //        GuastoMezzo g2 = new GuastoMezzo("Usura pastiglie freni", LocalDate.of(2024, 12, 6), LocalDate.of(2024, 12, 6));
@@ -478,15 +488,15 @@ public class Application {
 //        md.saveGuasto(g5);
 //
 //        GuastoMezzo g6 = new GuastoMezzo("Danni alla carrozzeria", LocalDate.of(2023, 8, 21), LocalDate.of(2023, 8, 29));
-//        g6.setMezzoDiTrasporto(mz38);
+//        g6.setMezzoDiTrasporto(mz2);
 //        md.saveGuasto(g6);
 //
 //        GuastoMezzo g7 = new GuastoMezzo("Danni alla carrozzeria", LocalDate.of(2022, 5, 19), LocalDate.of(2022, 5, 31));
-//        g7.setMezzoDiTrasporto(mz38);
+//        g7.setMezzoDiTrasporto(mz25);
 //        md.saveGuasto(g7);
 //
 //        GuastoMezzo g8 = new GuastoMezzo("Revisione motore", LocalDate.of(2019, 8, 11), LocalDate.of(2019, 8, 29));
-//        g8.setMezzoDiTrasporto(mz38);
+//        g8.setMezzoDiTrasporto(mz1);
 //        md.saveGuasto(g8);
 //
 //        GuastoMezzo g9 = new GuastoMezzo("Sostituzione iniettori", LocalDate.of(2021, 11, 1), LocalDate.of(2021, 11, 9));
@@ -494,7 +504,7 @@ public class Application {
 //        md.saveGuasto(g9);
 //
 //        GuastoMezzo g10 = new GuastoMezzo("Revisione motore", LocalDate.of(2025, 1, 4), LocalDate.of(2025, 1, 11));
-//        g10.setMezzoDiTrasporto(mz35);
+//        g10.setMezzoDiTrasporto(mz17);
 //        md.saveGuasto(g10);
 //
 //        GuastoMezzo g11 = new GuastoMezzo("Sostituzione iniettori", LocalDate.of(2021, 11, 21), LocalDate.of(2021, 11, 29));
@@ -502,55 +512,48 @@ public class Application {
 //        md.saveGuasto(g11);
 //
 //        GuastoMezzo g12 = new GuastoMezzo("Problema alimentazione", LocalDate.of(2023, 10, 11), LocalDate.of(2023, 10, 19));
-//        g12.setMezzoDiTrasporto(mz35);
+//        g12.setMezzoDiTrasporto(mz18);
 //        md.saveGuasto(g12);
 //
 //        GuastoMezzo g13 = new GuastoMezzo("Problema alimentazione", LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 29));
 //        g13.setMezzoDiTrasporto(mz14);
 //        md.saveGuasto(g13);
 //
-//        GuastoMezzo g14 = new GuastoMezzo("Revisione motore", LocalDate.now(), null);
-//        g14.setMezzoDiTrasporto(mz14);
-//        md.saveGuasto(g14);
-//
 //        GuastoMezzo g15 = new GuastoMezzo("Problema ai freni", LocalDate.now(), null);
 //        g15.setMezzoDiTrasporto(mz15);
 //        md.saveGuasto(g15);
-//
-//        GuastoMezzo g16 = new GuastoMezzo("Controllo elettrico", LocalDate.now(), null);
-//        g16.setMezzoDiTrasporto(mz16);
-//        md.saveGuasto(g16);
 //
 //        GuastoMezzo g17 = new GuastoMezzo("Danni alla carrozzeria", LocalDate.now(), null);
 //        g17.setMezzoDiTrasporto(mz17);
 //        md.saveGuasto(g17);
 //
-//        GuastoMezzo g18 = new GuastoMezzo("Combustione spontanea", LocalDate.now(), null);
-//        g18.setMezzoDiTrasporto(mz18);
+//        GuastoMezzo g18 = new GuastoMezzo("Controllo centralina", LocalDate.now(), null);
+//        g18.setMezzoDiTrasporto(mz2);
 //        md.saveGuasto(g18);
 //
 //        GuastoMezzo g19 = new GuastoMezzo("Controllo centralina", LocalDate.now(), null);
-//        g19.setMezzoDiTrasporto(mz19);
+//        g19.setMezzoDiTrasporto(mz24);
 //        md.saveGuasto(g19);
 //
-//        GuastoMezzo g20 = new GuastoMezzo("Rottura asse", LocalDate.now(), null);
-//        g20.setMezzoDiTrasporto(mz20);
+//        GuastoMezzo g20 = new GuastoMezzo("Problema alimentazione", LocalDate.now(), null);
+//        g20.setMezzoDiTrasporto(mz19);
 //        md.saveGuasto(g20);
 //
+//
 //        GuastoMezzo g21 = new GuastoMezzo("Usura pastiglie freni", LocalDate.of(2024, 3, 15), LocalDate.of(2024, 3, 18));
-//        g21.setMezzoDiTrasporto(mz15);
+//        g21.setMezzoDiTrasporto(mz24);
 //        md.saveGuasto(g21);
 //
 //        GuastoMezzo g22 = new GuastoMezzo("Danni alla carrozzeria", LocalDate.of(2023, 2, 5), LocalDate.of(2023, 2, 10));
-//        g22.setMezzoDiTrasporto(mz16);
+//        g22.setMezzoDiTrasporto(mz17);
 //        md.saveGuasto(g22);
 //
 //        GuastoMezzo g23 = new GuastoMezzo("Sostituzione iniettori", LocalDate.of(2022, 7, 22), LocalDate.of(2022, 7, 27));
-//        g23.setMezzoDiTrasporto(mz17);
+//        g23.setMezzoDiTrasporto(mz2);
 //        md.saveGuasto(g23);
 //
 //        GuastoMezzo g24 = new GuastoMezzo("Problema alimentazione", LocalDate.of(2023, 5, 9), LocalDate.of(2023, 5, 16));
-//        g24.setMezzoDiTrasporto(mz18);
+//        g24.setMezzoDiTrasporto(mz15);
 //        md.saveGuasto(g24);
 //
 //        GuastoMezzo g25 = new GuastoMezzo("Rottura asse", LocalDate.of(2023, 9, 1), LocalDate.of(2023, 9, 10));
@@ -558,65 +561,16 @@ public class Application {
 //        md.saveGuasto(g25);
 //
 //        GuastoMezzo g26 = new GuastoMezzo("Combustione spontanea", LocalDate.of(2024, 11, 11), LocalDate.of(2024, 11, 20));
-//        g26.setMezzoDiTrasporto(mz20);
+//        g26.setMezzoDiTrasporto(mz24);
 //        md.saveGuasto(g26);
 //
 //        GuastoMezzo g27 = new GuastoMezzo("Danni alla carrozzeria", LocalDate.of(2022, 4, 8), LocalDate.of(2022, 4, 13));
-//        g27.setMezzoDiTrasporto(mz36);
+//        g27.setMezzoDiTrasporto(mz17);
 //        md.saveGuasto(g27);
-//
-//        GuastoMezzo g28 = new GuastoMezzo("Revisione motore", LocalDate.of(2024, 6, 17), LocalDate.of(2024, 6, 25));
-//        g28.setMezzoDiTrasporto(mz36);
-//        md.saveGuasto(g28);
-//
-//        GuastoMezzo g29 = new GuastoMezzo("Problema alimentazione", LocalDate.of(2023, 3, 6), LocalDate.of(2023, 3, 12));
-//        g29.setMezzoDiTrasporto(mz37);
-//        md.saveGuasto(g29);
-//
-//        GuastoMezzo g30 = new GuastoMezzo("Usura pastiglie freni", LocalDate.of(2022, 9, 18), LocalDate.of(2022, 9, 21));
-//        g30.setMezzoDiTrasporto(mz37);
-//        md.saveGuasto(g30);
-//
-//        GuastoMezzo g31 = new GuastoMezzo("Sostituzione iniettori", LocalDate.of(2023, 1, 13), LocalDate.of(2023, 1, 18));
-//        g31.setMezzoDiTrasporto(mz39);
-//        md.saveGuasto(g31);
-//
-//        GuastoMezzo g32 = new GuastoMezzo("Rottura asse", LocalDate.of(2024, 8, 2), LocalDate.of(2024, 8, 8));
-//        g32.setMezzoDiTrasporto(mz39);
-//        md.saveGuasto(g32);
-//
-//        GuastoMezzo g33 = new GuastoMezzo("Revisione motore", LocalDate.of(2022, 2, 22), LocalDate.of(2022, 3, 1));
-//        g33.setMezzoDiTrasporto(mz40);
-//        md.saveGuasto(g33);
-//
-//        GuastoMezzo g34 = new GuastoMezzo("Combustione spontanea", LocalDate.of(2024, 10, 3), LocalDate.of(2024, 10, 10));
-//        g34.setMezzoDiTrasporto(mz40);
-//        md.saveGuasto(g34);
-//
-//
-//        GuastoMezzo g35 = new GuastoMezzo("Problema alimentazione", LocalDate.now(), null);
-//        g35.setMezzoDiTrasporto(mz35);
-//        md.saveGuasto(g35);
-//
-//        GuastoMezzo g36 = new GuastoMezzo("Corto circuito interno", LocalDate.now(), null);
-//        g36.setMezzoDiTrasporto(mz36);
-//        md.saveGuasto(g36);
-//
-//        GuastoMezzo g37 = new GuastoMezzo("Rottura asse", LocalDate.now(), null);
-//        g37.setMezzoDiTrasporto(mz37);
-//        md.saveGuasto(g37);
-//
-//        GuastoMezzo g38 = new GuastoMezzo("Guasto meccanico", LocalDate.now(), null);
-//        g38.setMezzoDiTrasporto(mz38);
-//        md.saveGuasto(g38);
-//
-//        GuastoMezzo g39 = new GuastoMezzo("Combustione spontanea", LocalDate.now(), null);
-//        g39.setMezzoDiTrasporto(mz39);
-//        md.saveGuasto(g39);
-//
-//        GuastoMezzo g40 = new GuastoMezzo("Rottura asse", LocalDate.now(), null);
-//        g40.setMezzoDiTrasporto(mz40);
-//        md.saveGuasto(g40);
+
+
+
+        List<Tratta> listaTratte = md.getAllTratte();
 
         int sceltaMenu =0;
         do {
@@ -916,15 +870,15 @@ public class Application {
                             }
 
                             System.out.println("Quale tra queste scegli?");
-                            scelta = in.nextInt();
+                            int sceltaTratta = in.nextInt();
                             in.nextLine();
 
-                            if(scelta < 1 || scelta > listaTratte.size()) {
+                            if(sceltaTratta < 1 || sceltaTratta > listaTratte.size()) {
                                 System.out.println("Scelta non valida!");
                                 //DA CAPIRE COME CONTINUARE
                             } else {
                                 //DA VEDERE PER LA CAPIENZA
-                                Tratta trattaScelta = listaTratte.get(scelta - 1);
+                                Tratta trattaScelta = listaTratte.get(sceltaTratta - 1);
 
                                 List<MezzoDiTrasporto> mezziTrattaSelezionata = sp.getMezziByTratta(trattaScelta);
 
@@ -938,7 +892,7 @@ public class Application {
                                         System.out.println("Ecco la lista di mezzi associati a questa tratta:");
                                         LocalTime orarioDiPartenza = LocalTime.of(6, 0);
                                         for (int i = 0; i < mezziTrattaSelezionata.size(); i++) {
-                                            LocalTime orarioMezzo = orarioDiPartenza.plusMinutes(i * 15);
+                                            LocalTime orarioMezzo = orarioDiPartenza.plusMinutes(i * 60);
                                             System.out.println((i + 1) + ") " + mezziTrattaSelezionata.get(i) + " ||Orario: " + orarioMezzo);
                                         }
 
@@ -975,16 +929,17 @@ public class Application {
                                                         System.out.println("Il tuo abbonamento è valido! Sali pure sul mezzo!");
                                                     } else {
                                                         System.out.println("Il tuo abbonamento non è valido, devi scendere!");
-                                                        scelta = 0;
+                                                        sceltaMenu = 0;
                                                     }
                                                 } else if (((Abbonamento) titoloUtente).getTipoAbbonamento() == TipoAbbonamento.MENSILE) {
                                                     LocalDate dataScadenzaAbbonamento = titoloUtente.getDataEmissione().plusMonths(1);
 
                                                     if(dataScadenzaAbbonamento.isAfter(LocalDate.now())) {
                                                         System.out.println("Il tuo abbonamento è valido! Sali pure sul mezzo!");
+                                                        sceltaMezzo = 0;
                                                     } else {
                                                         System.out.println("Il tuo abbonamento non è valido, devi scendere!");
-                                                        scelta = 0;
+                                                        sceltaMenu = 0;
                                                     }
                                                 }
                                             }

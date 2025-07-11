@@ -101,6 +101,13 @@ public class MezziDiTrasportoDAO {
 
         return query.getResultList();
     }
+    public List<Tratta> getAllTratte() {
+        return entityManager.createQuery("SELECT t FROM Tratta t", Tratta.class).getResultList();
+    }
+
+    public List<MezzoDiTrasporto> getAllMezzi() {
+        return entityManager.createQuery("SELECT m FROM MezzoDiTrasporto", MezzoDiTrasporto.class).getResultList();
+    }
 
 
 }
